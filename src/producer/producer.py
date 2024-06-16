@@ -11,7 +11,7 @@ producer = KafkaProducer(
 )
 
 # Sending JSON data
-future = producer.send('monthly-report', {'field': 'value'})
+future = producer.send(topic ='orders', value = {'order-description': 'This is the order 007'}, partition = 1)
 # Ensure all messages are sent before exiting
 producer.flush()
 
