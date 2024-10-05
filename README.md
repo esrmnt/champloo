@@ -4,10 +4,10 @@ This serves as a personal repository and notes-to-self on kafka. Its primary goa
 
 #### Execute Locally
 
-#### broker installation 
+#### Infrastructure setup 
 
 ```shell
-docker-compose.exe -f .\infra\docker-compose-multi-broker.yaml up
+docker-compose.exe -f .\infra\docker-compose.yaml up
 ```
 
 #### producer and consumers
