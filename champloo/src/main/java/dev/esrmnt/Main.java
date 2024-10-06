@@ -27,10 +27,14 @@ public class Main {
         // create the producer
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
-        for (int i = 31; i < 61; i++) {
+        for (int i = 0; i < 61; i++) {
+
+            String topic = "customer_orders_raw";
+            String value = "customer order number " + String.format("%02d", i);
+            String key = "id_" + Integer.toString(i);
+
             // create a producer record
-            ProducerRecord<String, String> producerRecord = new ProducerRecord<>("customer_orders_raw",
-                    "order number " + String.format("%02d", i));
+            ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic, key, value);
 
             // send data - asynchronous
             producer.send(producerRecord, new Callback() {
@@ -38,7 +42,8 @@ public class Main {
                     // executes every time a record is successfully sent or an exception is thrown
                     if (e == null) {
                         // the record was successfully sent
-                        logger.info(String.format("Received new metadata, Topic %s Partition %s Offset %s", recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset()));
+                        logger.info(String.format("Received new metadata, Topic %s Partition %s Offset %s",
+                                recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset()));
                     } else {
                         logger.error("Error while producing", e);
                     }
