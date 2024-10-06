@@ -10,12 +10,11 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringSerializer;
 
-public class Main {
+public class SimpleProducer {
 
-    private static Logger logger = LoggerFactory.getLogger(Main.class);
+    private static Logger logger = LoggerFactory.getLogger(SimpleProducer.class);
 
     public static void main(String[] args) {
-        logger.info("here comes the producer");
 
         String bootstrapServers = "127.0.0.1:9092";
         // create Producer properties
