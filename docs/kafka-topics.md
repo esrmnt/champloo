@@ -1,7 +1,7 @@
 ### Kafka Topics
 
 #### Create 
-kafka-topics --bootstrap-server localhost:9092 --create --topic customer_orders --partitions 6 --replication-factor 3
+kafka-topics --bootstrap-server localhost:9092 --create --topic customer_orders_raw --partitions 3 --replication-factor 1
 
 ##### Notes
 - You cannot specify a replication factor greater than the number of brokers you have
@@ -18,10 +18,10 @@ kafka-topics --bootstrap-server localhost:9092 --list
 - Use --exclude-internal if you want to hide these topics
 
 #### Describe 
-kafka-topics --bootstrap-server localhost:9092 --describe --topic customer_orders
+kafka-topics --bootstrap-server localhost:9092 --describe --topic customer_orders_raw
 
 #### Alter
-kafka-topics --bootstrap-server localhost:9092 --alter --topic customer_orders --partitions 8
+kafka-topics --bootstrap-server localhost:9092 --alter --topic customer_orders_raw --partitions 8
 
 ##### Notes
 
@@ -30,7 +30,7 @@ kafka-topics --bootstrap-server localhost:9092 --alter --topic customer_orders -
 - You can only add partitions, not remove partitions
 
 #### Delete
-kafka-topics --bootstrap-server localhost:9092 --delete --topic customer_orders
+kafka-topics --bootstrap-server localhost:9092 --delete --topic customer_orders_raw
 
 ##### Notes
 - In case topic deletion is not enabled (delete.topic.enable broker setting) then the topics will be "marked for deletion" but will not be deleted
