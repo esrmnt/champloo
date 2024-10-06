@@ -1,7 +1,8 @@
 package dev.esrmnt;
 
-import org.slf4j.Logger;
 import java.util.Properties;
+
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -16,12 +17,10 @@ public class SimpleProducer {
 
     public static void main(String[] args) {
 
-        String bootstrapServers = "127.0.0.1:9092";
+        String bootstrapServers = "localhost:9092";
+
         // create Producer properties
-        Properties properties = new Properties();
-        properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        Properties properties = SetProducerProperties(bootstrapServers);
 
         // create the producer
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
@@ -55,5 +54,13 @@ public class SimpleProducer {
 
         // flush and close producer
         producer.close();
+    }
+
+    private static Properties SetProducerProperties(String bootstrapServers) {
+        Properties properties = new Properties();
+        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        return properties;
     }
 }

@@ -1,7 +1,8 @@
 package dev.esrmnt;
 
-import org.slf4j.Logger;
 import java.util.Properties;
+
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -21,7 +22,7 @@ public class AvroProducer {
     public static void main(String[] args) {
 
         final String topic = "customer_payments";   
-        final String bootstrapServers = "127.0.0.1:9092";
+        final String bootstrapServers = "localhost:9092";
         final String schemaRegisteryUrl = "http://localhost:8081";
         
         Properties properties = SetProducerProperties(bootstrapServers, schemaRegisteryUrl);
@@ -29,7 +30,7 @@ public class AvroProducer {
         // create the producer
         KafkaProducer<String, Payment> producer = new KafkaProducer<String, Payment>(properties);
 
-        for (int i = 0; i < 61; i++) {
+        for (int i = 61; i < 65; i++) {
 
             String orderId = String.format("OrderNumber %02d", i);
             Double amount  = Double.valueOf(i);
