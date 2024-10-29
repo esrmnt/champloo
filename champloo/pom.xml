@@ -20,8 +20,6 @@
         </repository>
     </repositories>
 
-    
-
     <build>
         <plugins>
             <plugin>
@@ -65,6 +63,7 @@
             <artifactId>kafka-avro-serializer</artifactId>
             <version>7.7.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.avro/avro -->
         <dependency>
             <groupId>org.apache.avro</groupId>
             <artifactId>avro</artifactId>
